@@ -1,0 +1,21 @@
+---
+# - hosts: all
+#   become: yes
+#   roles:
+#     - install-nginx
+#     - install-docker
+
+- hosts: manager
+  become: yes
+  roles:
+    - docker-swarm-manager
+
+- hosts: workers
+  become: yes
+  roles:
+    - docker-swarm-worker
+
+- hosts: manager
+  become: yes
+  roles:
+    - deploy-stack
